@@ -26,5 +26,15 @@ router.get('/', (req,res,next)=>{
     });
 });
 
+router.delete('/',(req,res,next)=>{
+    const {accountId, color} = req.query;
+    Notification.deleteMany({accountId:accountId , color:color},(err)=>{
+        if(err){
+            return res.send({"error": err});
+        }
+        return res.send({message: 'success'});
+    });
+});
+
 
 module.exports = router;
